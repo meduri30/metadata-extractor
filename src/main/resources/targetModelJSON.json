@@ -1,0 +1,324 @@
+{
+  "name": "Results",
+  "description": "",
+  "version": "1.0",
+  "modelId": "$ some parent UUID value",
+  "entities": [
+    {
+      "$type": "ReferenceEntity",
+      "name": "wikidata",
+      "description": "",
+      "source": "batch",
+      "modelId": "f19bbb97-c031-441a-8bd1-61b9181c0b83/1a7ef9c8-c7e8-45f8-9d8a-b80f8ffe4612"
+    },
+    {
+      "$type": "ReferenceEntity",
+      "name": "domain",
+      "description": "",
+      "source": "batch",
+      "modelId": "f19bbb97-c031-441a-8bd1-61b9181c0b83/1a7ef9c8-c7e8-45f8-9d8a-b80f8ffe4612"
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "job1_results",
+      "modelId": "$ some child UUID value",
+      "description": "",
+      "annotations": [
+        {
+          "name": "flag:isSensitive",
+          "value": "false"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "productId",
+          "dataType": "string"
+        },
+        {
+          "name": "name",
+          "dataType": "string"
+        },
+        {
+          "name": "supplierName",
+          "dataType": "string"
+        },
+        {
+          "name": "CategoryID",
+          "dataType": "int64"
+        },
+        {
+          "name": "size",
+          "dataType": "string"
+        },
+        {
+          "name": "price",
+          "dataType": "double"
+        },
+        {
+          "name": "UnitsInStock",
+          "dataType": "int64"
+        },
+        {
+          "name": "UnitsOnOrder",
+          "dataType": "int64"
+        },
+        {
+          "name": "ReorderLevel",
+          "dataType": "int64"
+        },
+        {
+          "name": "Discontinued",
+          "dataType": "boolean"
+        },
+        {
+          "name": "createdOn",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "createdBy",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedOn",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "modifiedBy",
+          "dataType": "string"
+        },
+        {
+          "name": "createdOnBehalfBy",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedOnBehalfBy",
+          "dataType": "string"
+        },
+        {
+          "name": "organizationId",
+          "dataType": "string"
+        },
+        {
+          "name": "versionNumber",
+          "dataType": "int64"
+        },
+        {
+          "name": "importSequenceNumber",
+          "dataType": "int64"
+        },
+        {
+          "name": "overriddenCreatedOn",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "timeZoneRuleVersionNumber",
+          "dataType": "int64"
+        },
+        {
+          "name": "UTCConversionTimeZoneCode",
+          "dataType": "int64"
+        },
+        {
+          "name": "processId",
+          "dataType": "string"
+        },
+        {
+          "name": "stageId",
+          "dataType": "string"
+        },
+        {
+          "name": "traversedPath",
+          "dataType": "string"
+        },
+        {
+          "name": "vendorID",
+          "dataType": "string"
+        },
+        {
+          "name": "validFromDate",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "validToDate",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "currentCost",
+          "dataType": "double"
+        },
+        {
+          "name": "transactionCurrencyId",
+          "dataType": "string"
+        },
+        {
+          "name": "exchangeRate",
+          "dataType": "double"
+        },
+        {
+          "name": "currentCostBase",
+          "dataType": "double"
+        },
+        {
+          "name": "defaultUoMId",
+          "dataType": "string"
+        },
+        {
+          "name": "defaultUoMScheduleId",
+          "dataType": "string"
+        },
+        {
+          "name": "description",
+          "dataType": "string"
+        },
+        {
+          "name": "isKit",
+          "dataType": "boolean"
+        },
+        {
+          "name": "isStockItem",
+          "dataType": "boolean"
+        },
+        {
+          "name": "parentProductId",
+          "dataType": "string"
+        },
+        {
+          "name": "priceBase",
+          "dataType": "double"
+        },
+        {
+          "name": "productStructure",
+          "dataType": "int64"
+        },
+        {
+          "name": "productStructure_display",
+          "dataType": "string"
+        },
+        {
+          "name": "productNumber",
+          "dataType": "string"
+        },
+        {
+          "name": "productTypeCode",
+          "dataType": "int64"
+        },
+        {
+          "name": "productTypeCode_display",
+          "dataType": "string"
+        },
+        {
+          "name": "productUrl",
+          "dataType": "string"
+        },
+        {
+          "name": "quantityDecimal",
+          "dataType": "int64"
+        },
+        {
+          "name": "quantityOnHand",
+          "dataType": "double"
+        },
+        {
+          "name": "standardCost",
+          "dataType": "double"
+        },
+        {
+          "name": "standardCostBase",
+          "dataType": "double"
+        },
+        {
+          "name": "stateCode",
+          "dataType": "int64"
+        },
+        {
+          "name": "stateCode_display",
+          "dataType": "string"
+        },
+        {
+          "name": "statusCode",
+          "dataType": "int64"
+        },
+        {
+          "name": "statusCode_display",
+          "dataType": "string"
+        },
+        {
+          "name": "stockVolume",
+          "dataType": "double"
+        },
+        {
+          "name": "stockWeight",
+          "dataType": "double"
+        },
+        {
+          "name": "vendorName",
+          "dataType": "string"
+        },
+        {
+          "name": "vendorPartNumber",
+          "dataType": "string"
+        },
+        {
+          "name": "hierarchyPath",
+          "dataType": "string"
+        },
+        {
+          "name": "priceLevelId",
+          "dataType": "string"
+        },
+        {
+          "name": "subjectId",
+          "dataType": "string"
+        },
+        {
+          "name": "entityImageId",
+          "dataType": "string"
+        },
+        {
+          "name": "createdByExternalParty",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedByExternalParty",
+          "dataType": "string"
+        },
+        {
+          "name": "form",
+          "dataType": "string"
+        },
+        {
+          "name": "isBrand",
+          "dataType": "boolean"
+        },
+        {
+          "name": "isOvertheCounter",
+          "dataType": "boolean"
+        },
+        {
+          "name": "medicationCode",
+          "dataType": "string"
+        },
+        {
+          "name": "packageContainer",
+          "dataType": "string"
+        }
+      ],
+      "fileInformation": {
+        "fileFormat": "parquet",
+        "fileLocation": "",
+        "partitions": [
+          {
+            "name": "Part001",
+            "refreshTime": "2018-11-14T19:37:55.4375154+00:00",
+            "location": "https://dfmsitscuscdsa.blob.core.windows.net/0682aad0-37c2-4eac-a4d3-e243f7e0afc4/Products.csv?snapshot=2018-11-14T19:37:55.4342726Z"
+          }
+        ],
+        "schemas": [
+          "Comments: [for now, we are not using this!] this section can be used for standardisation process. For example, below two schema URLs defines the standard column names to be used for products.",
+          "https://raw.githubusercontent.com/Microsoft/CDM/master/schemaDocuments/core/applicationCommon/foundationCommon/Product.0.7.cdm.json",
+          "https://raw.githubusercontent.com/Microsoft/CDM/master/schemaDocuments/core/applicationCommon/foundationCommon/crmCommon/accelerators/healthCare/electronicMedicalRecords/Product.0.7.cdm.json"
+        ]
+      }
+    }
+  ]
+}
