@@ -1,0 +1,352 @@
+{
+  "id": "381ddc12-eaac-4d9e-a10a-7f2afde1e9fe",
+  "operations": {
+    "write": {
+      "outputSource": "file:/Users/krishnam/my_stuff/my_spikes/metadata-capture/spline-spark-agent/examples/data/output/batch/job1_results",
+      "append": false,
+      "id": 0,
+      "childIds": [
+        1
+      ],
+      "params": {
+        "path": "examples/data/output/batch/job1_results"
+      },
+      "extra": {
+        "name": "InsertIntoHadoopFsRelationCommand",
+        "destinationType": "Parquet"
+      }
+    },
+    "reads": [
+      {
+        "inputSources": [
+          "file:/Users/krishnam/my_stuff/my_spikes/metadata-capture/spline-spark-agent/examples/data/input/batch/domain.csv"
+        ],
+        "id": 8,
+        "schema": [
+          "c0fb3ca9-240c-4d4f-9b14-ee8d9fd46620",
+          "418db926-c349-4df2-b6b7-3b082312bd96"
+        ],
+        "params": {
+          "inferschema": "true",
+          "header": "true"
+        },
+        "extra": {
+          "name": "LogicalRelation",
+          "sourceType": "CSV"
+        }
+      },
+      {
+        "inputSources": [
+          "file:/Users/krishnam/my_stuff/my_spikes/metadata-capture/spline-spark-agent/examples/data/input/batch/wikidata.csv"
+        ],
+        "id": 6,
+        "schema": [
+          "2c547240-ea56-4e2f-813a-05b476796f26",
+          "d5e8c671-6f2c-4eba-ab97-78f5fa8f10ad",
+          "570e52c1-862e-4454-a57b-da76f9969095",
+          "6f6bf5a1-bac4-4285-b881-3dcb5571ee6d",
+          "c8c561ae-d74c-4f8b-ab0a-2df491e6ec03"
+        ],
+        "params": {
+          "inferschema": "true",
+          "header": "true"
+        },
+        "extra": {
+          "name": "LogicalRelation",
+          "sourceType": "CSV"
+        }
+      }
+    ],
+    "other": [
+      {
+        "id": 7,
+        "childIds": [
+          8
+        ],
+        "schema": [
+          "66aaa83f-dcde-43e2-89f6-75ee2f0d23e5",
+          "effc755d-2895-408c-9685-5313772687ca"
+        ],
+        "params": {
+          "name": "`mapping`"
+        },
+        "extra": {
+          "name": "SubqueryAlias"
+        }
+      },
+      {
+        "id": 5,
+        "childIds": [
+          6
+        ],
+        "schema": [
+          "8e241043-ddbc-4594-8037-178635f2835b",
+          "b07a0697-9769-461a-a79b-23619713b886",
+          "29084fec-c1b4-4ca3-8192-4bae80d6a915",
+          "a05fe28e-05ea-4e52-b743-fd5039c1441e",
+          "d6a0bf47-724b-475f-94a7-58728a3fac86"
+        ],
+        "params": {
+          "name": "`source`"
+        },
+        "extra": {
+          "name": "SubqueryAlias"
+        }
+      },
+      {
+        "id": 4,
+        "childIds": [
+          5
+        ],
+        "params": {
+          "condition": {
+            "_typeHint": "expr.Binary",
+            "symbol": ">",
+            "dataTypeId": "eab2fb45-d90e-4906-8d6c-1baddbb7ff56",
+            "children": [
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "d6a0bf47-724b-475f-94a7-58728a3fac86"
+              },
+              {
+                "_typeHint": "expr.Literal",
+                "value": 1000,
+                "dataTypeId": "946b8ae6-8b74-4ee6-acad-b46a56dd5815"
+              }
+            ]
+          }
+        },
+        "extra": {
+          "name": "Filter"
+        }
+      },
+      {
+        "id": 3,
+        "childIds": [
+          4
+        ],
+        "params": {
+          "condition": {
+            "_typeHint": "expr.Binary",
+            "symbol": ">",
+            "dataTypeId": "eab2fb45-d90e-4906-8d6c-1baddbb7ff56",
+            "children": [
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "a05fe28e-05ea-4e52-b743-fd5039c1441e"
+              },
+              {
+                "_typeHint": "expr.Literal",
+                "value": 10,
+                "dataTypeId": "946b8ae6-8b74-4ee6-acad-b46a56dd5815"
+              }
+            ]
+          }
+        },
+        "extra": {
+          "name": "Filter"
+        }
+      },
+      {
+        "id": 2,
+        "childIds": [
+          3,
+          7
+        ],
+        "schema": [
+          "8e241043-ddbc-4594-8037-178635f2835b",
+          "b07a0697-9769-461a-a79b-23619713b886",
+          "29084fec-c1b4-4ca3-8192-4bae80d6a915",
+          "a05fe28e-05ea-4e52-b743-fd5039c1441e",
+          "d6a0bf47-724b-475f-94a7-58728a3fac86",
+          "66aaa83f-dcde-43e2-89f6-75ee2f0d23e5",
+          "effc755d-2895-408c-9685-5313772687ca"
+        ],
+        "params": {
+          "joinType": "LEFT OUTER",
+          "condition": {
+            "_typeHint": "expr.Binary",
+            "symbol": "=",
+            "dataTypeId": "eab2fb45-d90e-4906-8d6c-1baddbb7ff56",
+            "children": [
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "b07a0697-9769-461a-a79b-23619713b886"
+              },
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "66aaa83f-dcde-43e2-89f6-75ee2f0d23e5"
+              }
+            ]
+          }
+        },
+        "extra": {
+          "name": "Join"
+        }
+      },
+      {
+        "id": 1,
+        "childIds": [
+          2
+        ],
+        "schema": [
+          "5dfdee1c-a6ce-4c59-92a9-63d56323c1c5",
+          "189bf633-4dfc-4bc5-b684-63d94f1f1134",
+          "a05fe28e-05ea-4e52-b743-fd5039c1441e"
+        ],
+        "params": {
+          "projectList": [
+            {
+              "_typeHint": "expr.Alias",
+              "alias": "page",
+              "child": {
+                "_typeHint": "expr.AttrRef",
+                "refId": "29084fec-c1b4-4ca3-8192-4bae80d6a915"
+              }
+            },
+            {
+              "_typeHint": "expr.Alias",
+              "alias": "domain",
+              "child": {
+                "_typeHint": "expr.AttrRef",
+                "refId": "effc755d-2895-408c-9685-5313772687ca"
+              }
+            },
+            {
+              "_typeHint": "expr.AttrRef",
+              "refId": "a05fe28e-05ea-4e52-b743-fd5039c1441e"
+            }
+          ]
+        },
+        "extra": {
+          "name": "Project"
+        }
+      }
+    ]
+  },
+  "systemInfo": {
+    "name": "spark",
+    "version": "2.4.2"
+  },
+  "agentInfo": {
+    "name": "spline",
+    "version": "0.5.0-SNAPSHOT"
+  },
+  "extraInfo": {
+    "appName": "cdm_db",
+    "dataTypes": [
+      {
+        "_typeHint": "dt.Simple",
+        "id": "d622a788-abf1-4502-a422-1256d48b802e",
+        "name": "string",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "43a0e282-f41e-4a56-a240-c14dafd4aa07",
+        "name": "timestamp",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "c753cd6c-0f7b-4b50-b5bb-88c59f120fb2",
+        "name": "integer",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "eab2fb45-d90e-4906-8d6c-1baddbb7ff56",
+        "name": "boolean",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "946b8ae6-8b74-4ee6-acad-b46a56dd5815",
+        "name": "integer",
+        "nullable": false
+      }
+    ],
+    "attributes": [
+      {
+        "id": "c0fb3ca9-240c-4d4f-9b14-ee8d9fd46620",
+        "name": "d_code",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "418db926-c349-4df2-b6b7-3b082312bd96",
+        "name": "d_name",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "66aaa83f-dcde-43e2-89f6-75ee2f0d23e5",
+        "name": "d_code",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "effc755d-2895-408c-9685-5313772687ca",
+        "name": "d_name",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "2c547240-ea56-4e2f-813a-05b476796f26",
+        "name": "date",
+        "dataTypeId": "43a0e282-f41e-4a56-a240-c14dafd4aa07"
+      },
+      {
+        "id": "d5e8c671-6f2c-4eba-ab97-78f5fa8f10ad",
+        "name": "domain_code",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "570e52c1-862e-4454-a57b-da76f9969095",
+        "name": "page_title",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "6f6bf5a1-bac4-4285-b881-3dcb5571ee6d",
+        "name": "count_views",
+        "dataTypeId": "c753cd6c-0f7b-4b50-b5bb-88c59f120fb2"
+      },
+      {
+        "id": "c8c561ae-d74c-4f8b-ab0a-2df491e6ec03",
+        "name": "total_response_size",
+        "dataTypeId": "c753cd6c-0f7b-4b50-b5bb-88c59f120fb2"
+      },
+      {
+        "id": "8e241043-ddbc-4594-8037-178635f2835b",
+        "name": "date",
+        "dataTypeId": "43a0e282-f41e-4a56-a240-c14dafd4aa07"
+      },
+      {
+        "id": "b07a0697-9769-461a-a79b-23619713b886",
+        "name": "domain_code",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "29084fec-c1b4-4ca3-8192-4bae80d6a915",
+        "name": "page_title",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "a05fe28e-05ea-4e52-b743-fd5039c1441e",
+        "name": "count_views",
+        "dataTypeId": "c753cd6c-0f7b-4b50-b5bb-88c59f120fb2"
+      },
+      {
+        "id": "d6a0bf47-724b-475f-94a7-58728a3fac86",
+        "name": "total_response_size",
+        "dataTypeId": "c753cd6c-0f7b-4b50-b5bb-88c59f120fb2"
+      },
+      {
+        "id": "5dfdee1c-a6ce-4c59-92a9-63d56323c1c5",
+        "name": "page",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      },
+      {
+        "id": "189bf633-4dfc-4bc5-b684-63d94f1f1134",
+        "name": "domain",
+        "dataTypeId": "d622a788-abf1-4502-a422-1256d48b802e"
+      }
+    ]
+  }
+}
