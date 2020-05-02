@@ -1,12 +1,24 @@
 package org.metadata.marquez.model
 
 import io.circe._
+import io.circe.syntax._
 import io.circe.generic.semiauto._
 import org.metadata.cdm.model.{Attribute, CDMModel, LocalEntity}
 
 case class CreateDataset(namespace: String,
                          dataset: String,
-                         body: CreateDatasetBody)
+                         jsonBody: String)
+
+object CreateDataset {
+  def apply(cdmModel: CDMModel): CreateDataset = {
+    val datasetBody: CreateDatasetBody = CreateDatasetBody(cdmModel)
+    CreateDataset(
+      namespace = "cdm_namespace",
+      dataset = datasetBody.physicalName,
+      jsonBody = datasetBody.asJson.noSpaces
+    )
+  }
+}
 
 case class CreateDatasetBody(`type`: String,
                              physicalName: String,
@@ -31,7 +43,7 @@ object CreateDatasetBody {
     CreateDatasetBody(
       `type` = "DB_TABLE",
       physicalName = localEntity.name,
-      sourceName = "",
+      sourceName = cdmModel.name,
       fields = fields,
       tags = None,
       description = None,
@@ -56,12 +68,3 @@ object CreateDatasetField {
       description = None)
   }
 }
-
-case class CreateJob(namespace: String, job: String, body: CreateJobBody)
-
-case class CreateJobBody(`type`: String,
-                         inputs: Array[String],
-                         outputs: Array[String],
-                         location: Option[String],
-                         context: Option[Map[String, String]],
-                         description: Option[String])

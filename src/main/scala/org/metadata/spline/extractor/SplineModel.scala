@@ -3,7 +3,7 @@ package org.metadata.spline.extractor
 import io.circe.{Decoder, Json}
 import org.metadata.cdm.model.{CDMModel, LocalEntity, ReferenceEntity}
 import org.metadata.cdm.operations._
-import org.metadata.marquez.model.CreateDatasetBody
+import org.metadata.marquez.model.{CreateDataset, MarquezOps}
 
 case class SplineModel(writeOperation: WriteOperation,
                        readOperation: ReadOperation,
@@ -27,10 +27,10 @@ object SplineModel {
   def main(args: Array[String]): Unit = {
     import Operations._
 
-    val extractedMetadataFile: String = "file:////Users/aparna/myStuff/myProjects/metadata-extractor/metadata-extractor/src/main/resources/SampleJSON.json"
+    val extractedMetadataFile: String = "file:////Users/aparna/myStuff/myProjects/metadata-extractor/metadata-extractor/src/main/resources/SampleJSON_2.json"
     val splineModelOpt: Option[SplineModel] = for {
       splineOutputJSON <- extractMetadataFromFile(extractedMetadataFile)
-      extraInfo <- fetchExtraInfo(splineOutputJSON)
+      extraInfo <- splineOutputJSON.to[ExtraInfo]
       writeOperation <- extract[WriteOperation](splineOutputJSON, extraInfo)
       readOperation <- extract[ReadOperation](splineOutputJSON, extraInfo)
     } yield {
@@ -44,7 +44,11 @@ object SplineModel {
       val cdmModel: CDMModel = splineModel.toCDM
       println(cdmModel.asJson)
       println(s"printing Marquez model!")
-      println(CreateDatasetBody(cdmModel).asJson)
+      val createDataset: CreateDataset = CreateDataset(cdmModel)
+      println(createDataset)
+//      println(s"Sending metadata to Marquez!")
+//      MarquezOps.createDataset(cdmModel)
+//      MarquezOps.createJob(cdmModel)
     })
   }
 
@@ -60,10 +64,6 @@ object SplineModel {
       case Some(value) =>
         Some(value.updateWithColumnInfo(extraInfo).asInstanceOf[A])
     }
-  }
-
-  def fetchExtraInfo(splineOutputJSON: Json): Option[ExtraInfo] = {
-    splineOutputJSON.to[ExtraInfo]
   }
 
   def printSplineModel(splineModelOpt: Option[SplineModel]): Unit = {

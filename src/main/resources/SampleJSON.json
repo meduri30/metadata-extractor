@@ -233,7 +233,7 @@
     "version": "0.5.0-SNAPSHOT"
   },
   "extraInfo": {
-    "appName": "Example 1",
+    "appName": "cdm_db",
     "dataTypes": [
       {
         "_typeHint": "dt.Simple",
