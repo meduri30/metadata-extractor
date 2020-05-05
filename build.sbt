@@ -19,3 +19,10 @@ libraryDependencies ++= Seq("com.softwaremill.sttp.client" %% "core" % "2.0.0-RC
 // https://mvnrepository.com/artifact/org.apache.spark/spark-core
 libraryDependencies += "org.apache.spark" %% "spark-core" % "2.4.2"
 libraryDependencies += "org.apache.spark" %% "spark-sql" % "2.4.2"
+
+// File Watcher
+val AkkaVersion = "2.5.31"
+libraryDependencies ++= Seq(
+  "com.lightbend.akka" %% "akka-stream-alpakka-file" % "2.0.0",
+  "com.typesafe.akka" %% "akka-stream" % AkkaVersion
+)
