@@ -1,6 +1,6 @@
 package org.metadata.spline.extractor
 
-import org.metadata.cdm.model.{LocalEntity, ReferenceEntity}
+import org.metadata.cdm.model.{FileInformation, LocalEntity, ReferenceEntity}
 import org.metadata.cdm.operations._
 import io.circe.{ACursor, Json}
 
@@ -25,6 +25,8 @@ case class WriteOperation(outputSource: String,
 
   def toLocalEntity: Either[LocalEntity, ReferenceEntity] = {
     val fileName: String = extractFileNameFromPath(outputSource)
+    val fileInformation: FileInformation =
+      FileInformation(fileFormat = destinationType, fileLocation = outputSource)
     Left(
       LocalEntity(
         fileName,
@@ -32,7 +34,8 @@ case class WriteOperation(outputSource: String,
         None,
         None,
         Some(false),
-        None)
+        None,
+        Some(fileInformation))
     )
   }
 }

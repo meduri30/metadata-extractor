@@ -3,7 +3,15 @@ package org.metadata.cdm.model
 import org.metadata.cdm.model
 import org.metadata.cdm.operations.Entities
 
-case class CDMModel(name: String, version: String, entities: Entities)
+case class CDMModel(name: String, version: String, entities: Entities) {
+  def getLocalEntities: Array[LocalEntity] = {
+    val localEntities: Array[LocalEntity] =
+      entities.collect { case Left(value) => value }
+    if (localEntities.length > 1)
+      println(s"More local entities, ${localEntities.length} than expected value of 1")
+    localEntities
+  }
+}
 
 case class Partition(name: String,
                      description: Option[String],

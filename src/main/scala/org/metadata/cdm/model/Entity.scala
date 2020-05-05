@@ -14,6 +14,8 @@ sealed trait Entity {
 
 case class Annotation(name: String, value: Option[String])
 
+case class FileInformation(fileFormat: String, fileLocation: String)
+
 case class Attribute(name: String,
                      dataType: String,
                      description: Option[String],
@@ -24,7 +26,8 @@ case class LocalEntity(name: String,
                        description: Option[String],
                        annotations: Option[Array[Annotation]],
                        isHidden: Option[Boolean],
-                       partitions: Option[Array[Partition]]) extends Entity
+                       partitions: Option[Array[Partition]],
+                       fileInformation: Option[FileInformation]) extends Entity
 
 case class ReferenceEntity(name: String,
                            source: String,
@@ -36,8 +39,12 @@ case class ReferenceEntity(name: String,
 object Attribute {
   implicit val annotationDecoder: Decoder[Annotation] = deriveDecoder[Annotation]
   implicit val attributeDecoder: Decoder[Attribute] = deriveDecoder[Attribute]
+  implicit val fileInformationDecoder: Decoder[FileInformation] =
+    deriveDecoder[FileInformation]
 
   implicit val annotationEncoder: Encoder[Annotation] = deriveEncoder[Annotation]
+  implicit val fileInformationEncoder: Encoder[FileInformation] =
+    deriveEncoder[FileInformation]
   implicit val attributeEncoder: Encoder[Attribute] = deriveEncoder[Attribute]
   implicit val partitionEncoder: Encoder[Partition] = deriveEncoder[Partition]
 }
@@ -54,7 +61,7 @@ object Entity {
         name <- c.downField("name").as[String]
         attributes <- c.downField("attributes").as[Array[Attribute]]
       } yield {
-        LocalEntity(name, attributes, None, None, None, None)
+        LocalEntity(name, attributes, None, None, None, None, None)
       }
 
   implicit val decodeReferenceEntity: Decoder[ReferenceEntity] =

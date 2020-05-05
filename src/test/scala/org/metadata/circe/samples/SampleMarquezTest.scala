@@ -1,6 +1,6 @@
 package org.metadata.circe.samples
 
-import org.metadata.marquez.model.MarquezOps
+import org.metadata.marquez.model.{GetDataset, GetSource}
 
 object SampleMarquezTest {
 
@@ -15,10 +15,14 @@ object SampleMarquezTest {
    *
    */
   def main(args: Array[String]): Unit = {
-    import sttp.client.quick._
-    val responseBody = quickRequest
-      .get(uri"http://localhost:5000/api/v1/sources/cdm_db")
-      .send().body
-    MarquezOps.extractGetSourceResponse(responseBody)
+    val baseURL = "http://localhost:5000/api/v1"
+    val getSource: Option[GetSource] = GetSource(baseURL, "cdm_db")
+    getSource.fold(println(s"Something went wrong!"))(x => println(s"Response: $x"))
+
+    val getDataset: Option[GetDataset] =
+      GetDataset(baseURL, "cdm_namespace", "job1_results_extractor")
+    getDataset.fold(println(s"Something went wrong while getting GetDataset")){
+      dataset => println(s"Get Dataset: $dataset")
+    }
   }
 }

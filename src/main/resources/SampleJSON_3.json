@@ -1,0 +1,352 @@
+{
+  "id": "bdcb5a67-a614-47e5-a8d2-0a038da8c613",
+  "operations": {
+    "write": {
+      "outputSource": "file:/Users/aparna/myStuff/myProjects/spline-spark-agent/spline-spark-agent/examples/data/output/batch/job1_results_extractor",
+      "append": false,
+      "id": 0,
+      "childIds": [
+        1
+      ],
+      "params": {
+        "path": "examples/data/output/batch/job1_results_extractor"
+      },
+      "extra": {
+        "name": "InsertIntoHadoopFsRelationCommand",
+        "destinationType": "Parquet"
+      }
+    },
+    "reads": [
+      {
+        "inputSources": [
+          "file:/Users/aparna/myStuff/myProjects/spline-spark-agent/spline-spark-agent/examples/data/input/batch/domain.csv"
+        ],
+        "id": 8,
+        "schema": [
+          "cd7f84ff-6ed8-407d-b0ef-85c4e3cfe6f3",
+          "a81f9c58-ac5e-4e74-9307-4d23b4abeb22"
+        ],
+        "params": {
+          "inferschema": "true",
+          "header": "true"
+        },
+        "extra": {
+          "name": "LogicalRelation",
+          "sourceType": "CSV"
+        }
+      },
+      {
+        "inputSources": [
+          "file:/Users/aparna/myStuff/myProjects/spline-spark-agent/spline-spark-agent/examples/data/input/batch/wikidata.csv"
+        ],
+        "id": 6,
+        "schema": [
+          "da1561d5-10cc-4f5d-accc-56ad65afbf31",
+          "8d3939db-c5d0-4d89-9c72-9871ae0c0611",
+          "08aa9a33-d50b-4a86-9e66-497b7597631b",
+          "6beaa181-cca6-4e50-abaf-68e6c495a21d",
+          "e1ee604d-881c-4b4e-a6f8-ce3fe2968add"
+        ],
+        "params": {
+          "inferschema": "true",
+          "header": "true"
+        },
+        "extra": {
+          "name": "LogicalRelation",
+          "sourceType": "CSV"
+        }
+      }
+    ],
+    "other": [
+      {
+        "id": 7,
+        "childIds": [
+          8
+        ],
+        "schema": [
+          "65922d93-4444-4b7f-bb76-9af1f21e08f7",
+          "ce11b3c8-1229-4392-871c-5914f98bce91"
+        ],
+        "params": {
+          "name": "`mapping`"
+        },
+        "extra": {
+          "name": "SubqueryAlias"
+        }
+      },
+      {
+        "id": 5,
+        "childIds": [
+          6
+        ],
+        "schema": [
+          "43a64170-d3d5-42f1-8829-7cd6eeee908e",
+          "8e4c0a56-bfe1-44d8-b19e-11b9180884cf",
+          "e5a72ce6-4b23-4dca-b95a-dfa37bba2694",
+          "38d1719b-99d0-4ece-9b9c-84fcbd5e91ac",
+          "d24d3b13-d398-4ed0-a886-b2af373b01fe"
+        ],
+        "params": {
+          "name": "`source`"
+        },
+        "extra": {
+          "name": "SubqueryAlias"
+        }
+      },
+      {
+        "id": 4,
+        "childIds": [
+          5
+        ],
+        "params": {
+          "condition": {
+            "_typeHint": "expr.Binary",
+            "symbol": ">",
+            "dataTypeId": "9468b868-8fc5-4fdb-a6e7-c8260e6b97b6",
+            "children": [
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "d24d3b13-d398-4ed0-a886-b2af373b01fe"
+              },
+              {
+                "_typeHint": "expr.Literal",
+                "value": 1000,
+                "dataTypeId": "77969bdb-6c87-47e4-a7ea-2454c9152b24"
+              }
+            ]
+          }
+        },
+        "extra": {
+          "name": "Filter"
+        }
+      },
+      {
+        "id": 3,
+        "childIds": [
+          4
+        ],
+        "params": {
+          "condition": {
+            "_typeHint": "expr.Binary",
+            "symbol": ">",
+            "dataTypeId": "9468b868-8fc5-4fdb-a6e7-c8260e6b97b6",
+            "children": [
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "38d1719b-99d0-4ece-9b9c-84fcbd5e91ac"
+              },
+              {
+                "_typeHint": "expr.Literal",
+                "value": 10,
+                "dataTypeId": "77969bdb-6c87-47e4-a7ea-2454c9152b24"
+              }
+            ]
+          }
+        },
+        "extra": {
+          "name": "Filter"
+        }
+      },
+      {
+        "id": 2,
+        "childIds": [
+          3,
+          7
+        ],
+        "schema": [
+          "43a64170-d3d5-42f1-8829-7cd6eeee908e",
+          "8e4c0a56-bfe1-44d8-b19e-11b9180884cf",
+          "e5a72ce6-4b23-4dca-b95a-dfa37bba2694",
+          "38d1719b-99d0-4ece-9b9c-84fcbd5e91ac",
+          "d24d3b13-d398-4ed0-a886-b2af373b01fe",
+          "65922d93-4444-4b7f-bb76-9af1f21e08f7",
+          "ce11b3c8-1229-4392-871c-5914f98bce91"
+        ],
+        "params": {
+          "joinType": "LEFT OUTER",
+          "condition": {
+            "_typeHint": "expr.Binary",
+            "symbol": "=",
+            "dataTypeId": "9468b868-8fc5-4fdb-a6e7-c8260e6b97b6",
+            "children": [
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "8e4c0a56-bfe1-44d8-b19e-11b9180884cf"
+              },
+              {
+                "_typeHint": "expr.AttrRef",
+                "refId": "65922d93-4444-4b7f-bb76-9af1f21e08f7"
+              }
+            ]
+          }
+        },
+        "extra": {
+          "name": "Join"
+        }
+      },
+      {
+        "id": 1,
+        "childIds": [
+          2
+        ],
+        "schema": [
+          "ec8bddf0-bda6-4627-8387-ec37b7f2762d",
+          "068f0373-6496-4e56-9469-bec762181d3a",
+          "38d1719b-99d0-4ece-9b9c-84fcbd5e91ac"
+        ],
+        "params": {
+          "projectList": [
+            {
+              "_typeHint": "expr.Alias",
+              "alias": "page",
+              "child": {
+                "_typeHint": "expr.AttrRef",
+                "refId": "e5a72ce6-4b23-4dca-b95a-dfa37bba2694"
+              }
+            },
+            {
+              "_typeHint": "expr.Alias",
+              "alias": "domain",
+              "child": {
+                "_typeHint": "expr.AttrRef",
+                "refId": "ce11b3c8-1229-4392-871c-5914f98bce91"
+              }
+            },
+            {
+              "_typeHint": "expr.AttrRef",
+              "refId": "38d1719b-99d0-4ece-9b9c-84fcbd5e91ac"
+            }
+          ]
+        },
+        "extra": {
+          "name": "Project"
+        }
+      }
+    ]
+  },
+  "systemInfo": {
+    "name": "spark",
+    "version": "2.4.2"
+  },
+  "agentInfo": {
+    "name": "spline",
+    "version": "0.5.0-SNAPSHOT"
+  },
+  "extraInfo": {
+    "appName": "Metadata_Extractor",
+    "dataTypes": [
+      {
+        "_typeHint": "dt.Simple",
+        "id": "3f10d60a-0637-4bc8-b535-690198a91153",
+        "name": "string",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "6ba29c57-6160-4359-b6e0-aa30f9a6702d",
+        "name": "timestamp",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "8d6fd0d2-4727-42ac-b591-fdfd355faf82",
+        "name": "integer",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "9468b868-8fc5-4fdb-a6e7-c8260e6b97b6",
+        "name": "boolean",
+        "nullable": true
+      },
+      {
+        "_typeHint": "dt.Simple",
+        "id": "77969bdb-6c87-47e4-a7ea-2454c9152b24",
+        "name": "integer",
+        "nullable": false
+      }
+    ],
+    "attributes": [
+      {
+        "id": "cd7f84ff-6ed8-407d-b0ef-85c4e3cfe6f3",
+        "name": "d_code",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "a81f9c58-ac5e-4e74-9307-4d23b4abeb22",
+        "name": "d_name",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "65922d93-4444-4b7f-bb76-9af1f21e08f7",
+        "name": "d_code",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "ce11b3c8-1229-4392-871c-5914f98bce91",
+        "name": "d_name",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "da1561d5-10cc-4f5d-accc-56ad65afbf31",
+        "name": "date",
+        "dataTypeId": "6ba29c57-6160-4359-b6e0-aa30f9a6702d"
+      },
+      {
+        "id": "8d3939db-c5d0-4d89-9c72-9871ae0c0611",
+        "name": "domain_code",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "08aa9a33-d50b-4a86-9e66-497b7597631b",
+        "name": "page_title",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "6beaa181-cca6-4e50-abaf-68e6c495a21d",
+        "name": "count_views",
+        "dataTypeId": "8d6fd0d2-4727-42ac-b591-fdfd355faf82"
+      },
+      {
+        "id": "e1ee604d-881c-4b4e-a6f8-ce3fe2968add",
+        "name": "total_response_size",
+        "dataTypeId": "8d6fd0d2-4727-42ac-b591-fdfd355faf82"
+      },
+      {
+        "id": "43a64170-d3d5-42f1-8829-7cd6eeee908e",
+        "name": "date",
+        "dataTypeId": "6ba29c57-6160-4359-b6e0-aa30f9a6702d"
+      },
+      {
+        "id": "8e4c0a56-bfe1-44d8-b19e-11b9180884cf",
+        "name": "domain_code",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "e5a72ce6-4b23-4dca-b95a-dfa37bba2694",
+        "name": "page_title",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "38d1719b-99d0-4ece-9b9c-84fcbd5e91ac",
+        "name": "count_views",
+        "dataTypeId": "8d6fd0d2-4727-42ac-b591-fdfd355faf82"
+      },
+      {
+        "id": "d24d3b13-d398-4ed0-a886-b2af373b01fe",
+        "name": "total_response_size",
+        "dataTypeId": "8d6fd0d2-4727-42ac-b591-fdfd355faf82"
+      },
+      {
+        "id": "ec8bddf0-bda6-4627-8387-ec37b7f2762d",
+        "name": "page",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      },
+      {
+        "id": "068f0373-6496-4e56-9469-bec762181d3a",
+        "name": "domain",
+        "dataTypeId": "3f10d60a-0637-4bc8-b535-690198a91153"
+      }
+    ]
+  }
+}
